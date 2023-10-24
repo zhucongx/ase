@@ -12,8 +12,8 @@ Units are converted using CODATA 2006, as used internally by Quantum
 ESPRESSO.
 """
 
-import os
 import operator as op
+import os
 import re
 import warnings
 from collections import OrderedDict
@@ -22,16 +22,15 @@ from os import path
 import numpy as np
 
 from ase.atoms import Atoms
-from ase.cell import Cell
+from ase.calculators.calculator import kpts2ndarray, kpts2sizeandoffsets
 from ase.calculators.singlepoint import (SinglePointDFTCalculator,
                                          SinglePointKPoint)
-from ase.calculators.calculator import kpts2ndarray, kpts2sizeandoffsets
-from ase.dft.kpoints import kpoint_convert
+from ase.cell import Cell
 from ase.constraints import FixAtoms, FixCartesian
-from ase.data import chemical_symbols, atomic_numbers
+from ase.data import atomic_numbers, chemical_symbols
+from ase.dft.kpoints import kpoint_convert
 from ase.units import create_units
 from ase.utils import iofunction
-
 
 # Quantum ESPRESSO uses CODATA 2006 internally
 units = create_units('2006')
@@ -318,7 +317,7 @@ def read_espresso_out(fileobj, index=slice(None), results_required=True):
                           "set verbosity='high' to print them."
 
         for kpts_index in indexes[_PW_KPTS]:
-            nkpts = int(pwo_lines[kpts_index].split()[4])
+            nkpts = int(re.findall(r'\b\d+\b', pwo_lines[kpts_index])[0])
             kpts_index += 2
 
             if pwo_lines[kpts_index].strip() == kpoints_warning:

@@ -1,8 +1,8 @@
 import pytest
 
 from ase.build import bulk
-from ase.optimize import BFGS
 from ase.calculators.emt import EMT
+from ase.optimize import BFGS
 
 
 @pytest.fixture

@@ -1,20 +1,18 @@
-import sys
 import os
-from pathlib import Path
-from subprocess import Popen, PIPE, check_output
+import sys
 import zlib
+from pathlib import Path
+from subprocess import PIPE, Popen, check_output
 
-import pytest
 import numpy as np
+import pytest
 
 import ase
-from ase.utils import workdir, seterr, get_python_package_path_description
-from ase.test.factories import (CalculatorInputs,
-                                factory_classes,
-                                NoSuchCalculator,
-                                get_factories,
-                                make_factory_fixture)
 from ase.dependencies import all_dependencies
+from ase.test.factories import (CalculatorInputs, NoSuchCalculator,
+                                factory_classes, get_factories,
+                                make_factory_fixture)
+from ase.utils import get_python_package_path_description, seterr, workdir
 
 helpful_message = """\
  * Use --calculators option to select calculators.

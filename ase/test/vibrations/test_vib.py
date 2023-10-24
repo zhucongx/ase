@@ -1,17 +1,18 @@
 """Test the ase.vibrations.Vibrations object using a harmonic calculator."""
 import os
 from pathlib import Path
-import pytest
+
 import numpy as np
+import pytest
 from numpy.testing import assert_array_almost_equal
 
-from ase import units, Atoms
 import ase.io
+from ase import Atoms, units
+from ase.build import add_adsorbate, fcc111
 from ase.calculators.qmmm import ForceConstantCalculator
-from ase.vibrations import Vibrations, VibrationsData
-from ase.thermochemistry import IdealGasThermo
 from ase.constraints import FixAtoms, FixCartesian
-from ase.build import fcc111, add_adsorbate
+from ase.thermochemistry import IdealGasThermo
+from ase.vibrations import Vibrations, VibrationsData
 
 
 @pytest.fixture

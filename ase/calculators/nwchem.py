@@ -3,12 +3,13 @@
 https://nwchemgit.github.io
 """
 import os
+
 import numpy as np
 
 from ase import io
-from ase.units import Hartree
 from ase.calculators.calculator import FileIOCalculator
 from ase.spectrum.band_structure import BandStructure
+from ase.units import Hartree
 
 
 class NWChem(FileIOCalculator):
